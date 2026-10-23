@@ -7804,7 +7804,7 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="CSCN8000-%E2%80%93-Lab-2:-Probability-&amp;-Statistics">CSCN8000 – Lab 2: Probability &amp; Statistics<a class="anchor-link" href="#CSCN8000-%E2%80%93-Lab-2:-Probability-&amp;-Statistics">¶</a></h1><p>This lab has two parts:</p>
 <ul>
-<li><strong>Part A – Spam classification:</strong> use <em>Naive Bayes</em> (a probability-based model) to decide whether an email is <strong>spam</strong> or <strong>ham</strong> (not spam). We compare two versions: <strong>Gaussian</strong> and <strong>Multinomial</strong> Naive Bayes.</li>
+<li><strong>Part A – Spam classification:</strong> use <em>Naive Bayes</em> (a probability-based model) to decide whether an email is <strong>spam</strong> or <strong>ham</strong> (not spam). I compare two versions: <strong>Gaussian</strong> and <strong>Multinomial</strong> Naive Bayes.</li>
 <li><strong>Part B – Outlier removal:</strong> use measures of <strong>central tendency</strong> (mean, median) and <strong>dispersion</strong> (standard deviation, IQR, percentiles) to remove extreme prices from the New York City Airbnb dataset.</li>
 </ul>
 </div>
@@ -8057,9 +8057,9 @@ Name: count, dtype: float64
 <p><strong>Insight:</strong> about <strong>71% ham and 29% spam</strong>. The classes are imbalanced, so a model that always guessed "ham" would already be about 71% accurate. Any useful model has to do clearly better than 71%, and we should look at more than accuracy (for example, how many spam emails it actually catches).</p>
 <h3 id="Step-2-%E2%80%93-Split-into-train-and-test-sets">Step 2 – Split into train and test sets<a class="anchor-link" href="#Step-2-%E2%80%93-Split-into-train-and-test-sets">¶</a></h3><ul>
 <li><strong>Training set (80%)</strong> – the model learns from these emails.</li>
-<li><strong>Test set (20%)</strong> – the model has never seen these. We use them to check how well it works on new emails.</li>
+<li><strong>Test set (20%)</strong> – the model has never seen these. I use them to check how well it works on new emails.</li>
 </ul>
-<p><code>stratify=y</code> keeps the same ham/spam ratio in both sets. <code>random_state=42</code> makes the split the same each time we run the notebook.</p>
+<p><code>stratify=y</code> keeps the same ham/spam ratio in both sets. <code>random_state=42</code> makes the split the same each time I run the notebook.</p>
 </div>
 </div>
 </div>
@@ -8106,7 +8106,7 @@ Testing emails : 1035
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Step-3-%E2%80%93-Turn-text-into-numbers-(Bag-of-Words)">Step 3 – Turn text into numbers (Bag of Words)<a class="anchor-link" href="#Step-3-%E2%80%93-Turn-text-into-numbers-(Bag-of-Words)">¶</a></h3><p>Models can only work with numbers, so we use <code>CountVectorizer</code> to turn each email into a row of <strong>word counts</strong>:</p>
+<h3 id="Step-3-%E2%80%93-Turn-text-into-numbers-(Bag-of-Words)">Step 3 – Turn text into numbers (Bag of Words)<a class="anchor-link" href="#Step-3-%E2%80%93-Turn-text-into-numbers-(Bag-of-Words)">¶</a></h3><p>Models can only work with numbers, so I use <code>CountVectorizer</code> to turn each email into a row of <strong>word counts</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -8139,7 +8139,7 @@ Testing emails : 1035
 <li><code>stop_words="english"</code> removes very common words like <em>the, and, is</em>, which don't help tell spam from ham.</li>
 <li><code>max_features=3000</code> keeps only the 3,000 most frequent words. This keeps the data small enough for Gaussian NB, which needs a regular (dense) table.</li>
 </ul>
-<p><strong>Important:</strong> we <code>fit</code> the vectorizer on the <strong>training data only</strong> and then <code>transform</code> the test data with it. This way, no information from the test set leaks into training.</p>
+<p><strong>Important:</strong> I <code>fit</code> the vectorizer on the <strong>training data only</strong> and then <code>transform</code> the test data with it. This way, no information from the test set leaks into training.</p>
 </div>
 </div>
 </div>
@@ -8206,7 +8206,7 @@ Example words in vocabulary: ['ellis' 'elsa' 'em' 'email' 'emails' 'emerson' 'em
 </tr>
 </tbody>
 </table>
-<p>In theory, Multinomial is the "textbook" choice for word counts. Let's test whether that is true for our data. Both models get <strong>exactly the same features</strong>, so the comparison is fair.</p>
+<p>Multinomial, in theory, is the "textbook" choice for word counts. I will test this assumption for my data. Both models get <strong>exactly the same features</strong>, so the comparison is fair.</p>
 </div>
 </div>
 </div>
@@ -8256,7 +8256,7 @@ Multinomial NB accuracy: 0.944
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Step-5-%E2%80%93-Evaluate-in-more-detail">Step 5 – Evaluate in more detail<a class="anchor-link" href="#Step-5-%E2%80%93-Evaluate-in-more-detail">¶</a></h3><p>Accuracy alone can hide problems, so we also look at:</p>
+<h3 id="Step-5-%E2%80%93-Evaluate-in-more-detail">Step 5 – Evaluate in more detail<a class="anchor-link" href="#Step-5-%E2%80%93-Evaluate-in-more-detail">¶</a></h3><p>Accuracy alone can hide problems, so I will also look at:</p>
 <ul>
 <li><strong>Confusion matrix</strong> – how many emails were classified correctly or incorrectly in each class.</li>
 <li><strong>Precision (spam)</strong> – of the emails the model <em>called</em> spam, how many really were spam? (Low precision means real emails end up in the spam folder.)</li>
@@ -8434,7 +8434,7 @@ weighted avg       0.95      0.94      0.94      1035
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Which-model-performs-better?">Which model performs better?<a class="anchor-link" href="#Which-model-performs-better?">¶</a></h3><p>With the same 3,000 word-count features, <strong>Gaussian NB performed better</strong> on this test set. It has higher accuracy, precision, recall and F1 for spam.</p>
-<p>This is a bit surprising, because Multinomial NB is usually recommended for text. One test split could be luck, so let's repeat the experiment with <strong>5 different random splits</strong>:</p>
+<p>This is a bit surprising, because Multinomial NB is usually recommended for text. One test split could be luck, so I will repeat the experiment with <strong>5 different random splits</strong>:</p>
 </div>
 </div>
 </div>
@@ -8544,8 +8544,8 @@ weighted avg       0.95      0.94      0.94      1035
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Gaussian NB wins on every split</strong>, so the result is consistent and not just luck.</p>
-<p>A possible reason: we kept only the 3,000 most common words. Gaussian NB learns an average count <em>and</em> a spread (variance) for every word in each class, which gives it extra detail to work with. Multinomial NB only learns how often each word appears in each class.</p>
-<p><strong>One extra experiment.</strong> Multinomial NB has a practical advantage: it works with <em>sparse</em> data (it only stores the non-zero counts), so it can use the <strong>whole vocabulary</strong> of about 45,000 words. Gaussian NB needs a full dense table, which would take about 1.5 GB of memory at that size, so we can't run it there. Let's see how Multinomial does with every word:</p>
+<p>A possible reason: I kept only the 3,000 most common words. Gaussian NB learns an average count <em>and</em> a spread (variance) for every word in each class, which gives it extra detail to work with. Multinomial NB only learns how often each word appears in each class.</p>
+<p><strong>One extra experiment.</strong> Multinomial NB has a practical advantage: it works with <em>sparse</em> data (it only stores the non-zero counts), so it can use the <strong>whole vocabulary</strong> of about 45,000 words. Gaussian NB needs a full dense table, which would take about 1.5 GB of memory at that size, so I can't run it there. Let's see how Multinomial does with every word:</p>
 </div>
 </div>
 </div>
@@ -8592,9 +8592,9 @@ Multinomial NB accuracy with full vocabulary: 0.9758
 <h3 id="Conclusion-for-the-comparison">Conclusion for the comparison<a class="anchor-link" href="#Conclusion-for-the-comparison">¶</a></h3><ul>
 <li><strong>Fair test (same 3,000 features): Gaussian NB performs better</strong> (about 96% vs 94–95% accuracy, and it catches more spam: recall 0.98 vs 0.94).</li>
 <li>If each model uses what it handles best, Multinomial NB with the full vocabulary reaches a similar or slightly higher accuracy, and it is much faster and lighter on memory.</li>
-<li><strong>Lesson:</strong> the "textbook" choice is a good starting point, but you should always <strong>test models on your own data</strong>.</li>
+<li><strong>Lesson:</strong> the "textbook" choice is a good starting point, but we should always <strong>test models on our own data</strong>.</li>
 </ul>
-<p>Because the task asks which of the two trained models performs better, we use the <strong>Gaussian NB</strong> model for the predictions below.</p>
+<p>Since the <strong>Gaussian NB</strong> model performed better in the fair test, I will use the <strong>Gaussian NB</strong> model for the predictions below.</p>
 <h3 id="Step-6-%E2%80%93-Make-predictions-on-test-data">Step 6 – Make predictions on test data<a class="anchor-link" href="#Step-6-%E2%80%93-Make-predictions-on-test-data">¶</a></h3><p>First, let's look at some test emails the model has never seen and compare its prediction with the true label.</p>
 </div>
 </div>
@@ -8742,7 +8742,7 @@ Multinomial NB accuracy with full vocabulary: 0.9758
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We can also try it on brand-new messages that we write ourselves:</p>
+<p>I also try it on brand-new messages that I have written myself. The model is very confident about the spam messages, but it is less confident about the ham messages. This is because the training set has <strong>more ham than spam</strong>, so the model is biased toward ham.:</p>
 </div>
 </div>
 </div>
@@ -8794,7 +8794,7 @@ Multinomial NB accuracy with full vocabulary: 0.9758
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Insight:</strong> Gaussian NB marked the normal "meeting tomorrow" email as <strong>spam</strong>. Our handwritten emails are very short and use words (like <em>meeting</em>, <em>report</em>, <em>tomorrow</em>) that it sees only now and then in training. Gaussian NB treats every word count as a bell curve with a very small spread, so one unusual count can push it strongly to one class. This is also where its lower ham recall (0.95) shows up: it sends some real emails to spam.</p>
+<p><strong>Insight:</strong> Gaussian NB marked the normal "meeting tomorrow" email as <strong>spam</strong>. My handwritten emails are very short and use words (like <em>meeting</em>, <em>report</em>, <em>tomorrow</em>) that it sees only now and then in training. Gaussian NB treats every word count as a bell curve with a very small spread, so one unusual count can push it strongly to one class. This is also where its lower ham recall (0.95) shows up: it sends some real emails to spam.</p>
 <p>Let's compare both models on the same handwritten emails:</p>
 </div>
 </div>
@@ -8920,7 +8920,7 @@ Multinomial NB accuracy with full vocabulary: 0.9758
 <li>data entry errors (e.g. a price of $0),</li>
 <li>real but unusual cases (e.g. a luxury penthouse at $10,000/night).</li>
 </ul>
-<p>They can distort statistics like the mean and hurt machine-learning models. Our goal is to remove extreme <strong>price per night</strong> values and produce a clean dataset.</p>
+<p>They can distort statistics like the mean and hurt machine-learning models. The goal is to remove extreme <strong>price per night</strong> values and produce a clean dataset.</p>
 <h3 id="Step-1-%E2%80%93-Load-and-explore">Step 1 – Load and explore<a class="anchor-link" href="#Step-1-%E2%80%93-Load-and-explore">¶</a></h3>
 </div>
 </div>
@@ -9270,7 +9270,7 @@ Rows removed: 388
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Insight:</strong> the lower limit is <strong>negative</strong>, so the z-score method can never flag a cheap listing. The upper limit (about $873) is also very high.</p>
-<p>This happens because the mean and standard deviation are themselves <strong>inflated by the outliers</strong> we want to remove. The z-score method works best when the data is roughly a <strong>bell curve (normal)</strong>, and our price data is strongly skewed, so this method is <strong>not a good fit</strong> here.</p>
+<p>This happens because the mean and standard deviation are themselves <strong>inflated by the outliers</strong> we want to remove. The z-score method works best when the data is roughly a <strong>bell curve (normal)</strong>, and the price data is strongly skewed, so this method is <strong>not a good fit</strong> here.</p>
 <h3 id="Method-2-%E2%80%93-IQR-method-(based-on-quartiles-/-median)">Method 2 – IQR method (based on quartiles / median)<a class="anchor-link" href="#Method-2-%E2%80%93-IQR-method-(based-on-quartiles-/-median)">¶</a></h3><p>This is the rule used to draw the boxplot whiskers:</p>
 <ul>
 <li><strong>Q1</strong> = 25th percentile, <strong>Q3</strong> = 75th percentile</li>
@@ -9327,7 +9327,7 @@ Rows removed: 2972
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Insight:</strong> the upper limit is **$334**, which is much tighter than the z-score's ~$873. The lower limit is negative again because prices are bunched near the low end, but we already removed the $0 prices.</p>
+<p><strong>Insight:</strong> the upper limit is **$334**, which is much tighter than the z-score's ~$873. The lower limit is negative again because prices are bunched near the low end, but I already removed the $0 prices.</p>
 <h3 id="Method-3-%E2%80%93-Percentile-trimming">Method 3 – Percentile trimming<a class="anchor-link" href="#Method-3-%E2%80%93-Percentile-trimming">¶</a></h3><p>A simple, easy-to-explain method: keep only the values between two percentiles, e.g. the <strong>1st and 99th</strong>. This removes the cheapest 1% and the most expensive 1%.</p>
 </div>
 </div>
@@ -9372,8 +9372,8 @@ Rows removed: 867
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Insight:</strong> percentile trimming is the only method so far that also removes <strong>suspiciously cheap</strong> listings (e.g. $10/night). The downside is that it <em>always</em> removes about 2% of the data, even if the data had no real outliers. You choose the cut-off yourself (1/99, 5/95, ...).</p>
-<h3 id="Method-4-%E2%80%93-IQR-by-room-type-(our-recommended-method)">Method 4 – IQR by room type (our recommended method)<a class="anchor-link" href="#Method-4-%E2%80%93-IQR-by-room-type-(our-recommended-method)">¶</a></h3><p>The task asks about price per night <strong>for a given apartment/home</strong>. Different room types have very different normal prices:</p>
+<p><strong>Insight:</strong> percentile trimming is the only method so far that also removes <strong>suspiciously cheap</strong> listings (e.g. $10/night). The downside is that it <em>always</em> removes about 2% of the data, even if the data had no real outliers. The cutoff should be chosen based on the specific needs of the analysis (1/99, 5/95, ...).</p>
+<h3 id="Method-4-%E2%80%93-IQR-by-room-type-(our-recommended-method)">Method 4 – IQR by room type (our recommended method)<a class="anchor-link" href="#Method-4-%E2%80%93-IQR-by-room-type-(our-recommended-method)">¶</a></h3><p>Looking at the price per night <strong>for a given apartment/home</strong>, different room types have very different normal prices:</p>
 </div>
 </div>
 </div>
@@ -9485,12 +9485,12 @@ Rows removed: 867
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>A <strong>$300 shared room** is very unusual, while a **$300 entire apartment</strong> is quite normal. If we use one limit for all listings, we:</p>
+<p>A <strong>$300 shared room** is very unusual, while a **$300 entire apartment</strong> is quite normal. If only one limit is used for all listings, we:</p>
 <ul>
 <li>remove too many normal <em>entire homes</em>, and</li>
 <li>keep overpriced <em>shared/private rooms</em>.</li>
 </ul>
-<p>So we apply the <strong>IQR rule separately inside each room type</strong>.</p>
+<p>Therefore, I apply the <strong>IQR rule separately inside each room type</strong>.</p>
 </div>
 </div>
 </div>
@@ -9725,7 +9725,7 @@ Rows removed: 3244
 <li><strong>IQR (all listings)</strong> and <strong>IQR by room type</strong> remove a similar number of rows, but the group version uses limits that make sense for each type of home.</li>
 <li><strong>Percentile trimming</strong> is the only method here that also removes the very cheap listings.</li>
 </ul>
-<h3 id="Step-5-%E2%80%93-Final-clean-dataset">Step 5 – Final clean dataset<a class="anchor-link" href="#Step-5-%E2%80%93-Final-clean-dataset">¶</a></h3><p>We choose <strong>IQR by room type</strong> as the final method because:</p>
+<h3 id="Step-5-%E2%80%93-Final-clean-dataset">Step 5 – Final clean dataset<a class="anchor-link" href="#Step-5-%E2%80%93-Final-clean-dataset">¶</a></h3><p><strong>IQR was chosen by room type</strong> as the final method because:</p>
 <ol>
 <li>It is based on quartiles, so it is <strong>robust</strong> to the outliers themselves (unlike mean/std).</li>
 <li>It judges each listing against <strong>similar homes</strong>, as the task asks ("price per night for a given apartment/home").</li>
@@ -9818,7 +9818,7 @@ Original rows: 48895 -&gt; clean rows: 45640 (3255 removed, 6.7%)
 <li>The <strong>mean is sensitive</strong> to outliers, and the <strong>median is robust</strong>. When data is skewed, use median/quartile-based methods.</li>
 <li><strong>Z-score</strong> works best on bell-shaped (normal) data. On skewed prices it misses many outliers.</li>
 <li><strong>IQR</strong> is the standard, robust rule (the same one used to draw boxplots).</li>
-<li><strong>Percentiles</strong> are simple and also remove extreme low values, but you have to choose the cut-off.</li>
+<li><strong>Percentiles</strong> are simple and also remove extreme low values, but the cut-off has to be chosen carefully.</li>
 <li><strong>Context matters:</strong> comparing each listing only with similar homes (grouping by room type) gives fairer limits.</li>
 </ul>
 <hr/>
